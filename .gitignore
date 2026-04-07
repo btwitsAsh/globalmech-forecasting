@@ -1,0 +1,41 @@
+# Python cache
+
+**pycache**/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+
+datascience/
+venv/
+env/
+
+# Jupyter Notebook checkpoints
+
+.ipynb_checkpoints/
+
+# System files
+
+.DS_Store
+
+# Logs
+
+*.log
+
+# Model artifacts (optional - keep if small)
+
+# model.pkl
+
+# Data files (optional - keep if large)
+
+# data/
+
+# Streamlit cache
+
+.streamlit/
+
+# IDE
+
+.vscode/
+.idea/
