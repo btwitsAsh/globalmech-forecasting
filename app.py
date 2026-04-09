@@ -4,22 +4,16 @@ import numpy as np
 import joblib
 import plotly.graph_objects as go
 
-# ----------------------------
-# CONFIG
-# ----------------------------
+
 st.set_page_config(page_title="GlobalMech Forecasting", layout="wide")
 
-# ----------------------------
-# LOAD DATA + MODEL
-# ----------------------------
+
 df = pd.read_csv("data/raw/globalmech_data.csv", parse_dates=["Date"], index_col="Date")
 model = joblib.load("model.pkl")
 
 targets = ["Dom_Cap", "Dom_Spares", "Exp_Cap", "Exp_Spares"]
 
-# ----------------------------
-# FEATURE ENGINEERING
-# ----------------------------
+
 def create_features(df):
     df_fe = df.copy()
 
@@ -40,18 +34,14 @@ df_fe = create_features(df)
 
 X = df_fe.drop(columns=targets)
 
-# ----------------------------
-# SIDEBAR CONTROLS
-# ----------------------------
+
 st.sidebar.title("🎛️ Scenario Controls")
 
 usd_change = st.sidebar.slider("USD Change", -10, 10, 0)
 install_change = st.sidebar.slider("Install Base Change", -100, 100, 0)
 shipping_change = st.sidebar.slider("Shipping Index Change", -20, 20, 0)
 
-# ----------------------------
-# SCENARIO
-# ----------------------------
+
 latest_X = X.tail(1).copy()
 
 latest_X["USD_INR"] += usd_change
@@ -61,14 +51,10 @@ latest_X["Shipping_Index"] += shipping_change
 baseline = model.predict(X.tail(1))
 scenario = model.predict(latest_X)
 
-# ----------------------------
-# TITLE
-# ----------------------------
+
 st.title("🚀 GlobalMech Revenue Forecasting Dashboard")
 
-# ----------------------------
-# KPI CARDS
-# ----------------------------
+
 st.subheader("📊 Revenue Impact Summary")
 
 cols = st.columns(4)
@@ -81,9 +67,7 @@ for i, col in enumerate(targets):
         delta=f"{change:.0f}"
     )
 
-# ----------------------------
-# CHARTS
-# ----------------------------
+
 st.subheader("📈 Revenue Trends")
 
 for col in targets:
@@ -108,9 +92,7 @@ for col in targets:
     
     st.plotly_chart(fig, use_container_width=True)
 
-# ----------------------------
-# INSIGHTS PANEL
-# ----------------------------
+
 st.subheader("🧠 Key Insights")
 
 if usd_change > 0:
