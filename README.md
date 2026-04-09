@@ -59,7 +59,7 @@ globalmech_forecasting/
 │   ├── 03_feature_engineering.ipynb
 │   ├── 04_modeling.ipynb
 │
-├── src/                       # Modular code (optional)
+├── src/                       
 └── README.md
 ```
 
@@ -108,7 +108,7 @@ A key highlight of this project is the ability to simulate business scenarios:
 
 ## 🌐 Live Demo
 
-👉 *(Add your Streamlit link here after deployment)*
+👉 *https://globalmech-forecasting-ofng7vq2erjxx4qucdxopg.streamlit.app/*
 
 ---
 
